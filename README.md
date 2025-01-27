@@ -65,3 +65,7 @@ This project utilizes a variety of technologies and libraries to create a robust
 ### Language:
 * JavaScript: The primary language for the frontend.
 * Rust: Used for the smart contracts.
+
+## License
+
+This project is licensed under the terms of the [LICENSE.md](LICENSE.md) file.
