@@ -7,15 +7,10 @@ import {
   VStack,
   Button,
   Box,
-  useToast,
   HStack,
   Badge,
-  Card,
-  CardBody,
-  Stack,
-  Divider
 } from '@chakra-ui/react'
-import { GrazProvider, useGraz, useAccount, useConnect, useDisconnect } from 'graz'
+import { GrazProvider, useAccount, useConnect, useDisconnect } from 'graz'
 
 // MANTRA Chain configuration
 const mantraChain = {
@@ -53,7 +48,7 @@ const mantraChain = {
       coinDecimals: 6,
       coinGeckoId: 'mantra-dao',
     },
-  },
+  ],
   gasPriceStep: {
     low: 0.01,
     average: 0.025,
@@ -66,86 +61,65 @@ function WalletConnection() {
   const { data: account, isConnected } = useAccount()
   const { connect } = useConnect()
   const { disconnect } = useDisconnect()
-  const toast = useToast()
 
   const handleConnect = async () => {
     try {
       await connect()
-      toast({
-        title: 'Wallet Connected',
-        description: 'Successfully connected to MANTRA Chain',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      })
+      alert('Successfully connected to MANTRA Chain!')
     } catch (error) {
-      toast({
-        title: 'Connection Failed',
-        description: error.message || 'Failed to connect wallet',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      })
+      alert(`Connection failed: ${error.message || 'Failed to connect wallet'}`)
     }
   }
 
   const handleDisconnect = async () => {
     try {
       await disconnect()
-      toast({
-        title: 'Wallet Disconnected',
-        description: 'Successfully disconnected from wallet',
-        status: 'info',
-        duration: 3000,
-        isClosable: true,
-      })
+      alert('Successfully disconnected from wallet!')
     } catch (error) {
-      toast({
-        title: 'Disconnection Failed',
-        description: error.message || 'Failed to disconnect wallet',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      })
+      alert(`Disconnection failed: ${error.message || 'Failed to disconnect wallet'}`)
     }
   }
 
   if (isConnected && account) {
     return (
-      <Card maxW="md" mx="auto">
-        <CardBody>
-          <Stack spacing={4}>
-            <VStack spacing={2}>
-              <Text fontWeight="bold">Connected Wallet</Text>
-              <Badge colorScheme="green" px={3} py={1}>
-                {account.name || 'Unknown Wallet'}
-              </Badge>
-            </VStack>
+      <Box
+        maxW="md"
+        mx="auto"
+        p={6}
+        borderWidth="1px"
+        borderRadius="lg"
+        borderColor="gray.200"
+      >
+        <VStack spacing={4}>
+          <VStack spacing={2}>
+            <Text fontWeight="bold">Connected Wallet</Text>
+            <Badge colorScheme="green" px={3} py={1}>
+              {account.name || 'Unknown Wallet'}
+            </Badge>
+          </VStack>
 
-            <Divider />
+          <Box w="100%" h="1px" bg="gray.300" />
 
-            <VStack spacing={2} align="start">
-              <Text fontSize="sm" color="gray.600">Address:</Text>
-              <Text fontSize="xs" fontFamily="mono" wordBreak="break-all">
-                {account.bech32Address}
-              </Text>
-              <Text fontSize="sm" color="gray.600">Public Key:</Text>
-              <Text fontSize="xs" fontFamily="mono" wordBreak="break-all">
-                {account.pubkey}
-              </Text>
-            </VStack>
+          <VStack spacing={2} align="start" w="100%">
+            <Text fontSize="sm" color="gray.600">Address:</Text>
+            <Text fontSize="xs" fontFamily="mono" wordBreak="break-all">
+              {account.bech32Address}
+            </Text>
+            <Text fontSize="sm" color="gray.600">Public Key:</Text>
+            <Text fontSize="xs" fontFamily="mono" wordBreak="break-all">
+              {account.pubkey}
+            </Text>
+          </VStack>
 
-            <Button
-              colorScheme="red"
-              variant="outline"
-              onClick={handleDisconnect}
-              size="sm"
-            >
-              Disconnect Wallet
-            </Button>
-          </Stack>
-        </CardBody>
-      </Card>
+          <Button
+            colorScheme="red"
+            onClick={handleDisconnect}
+            size="sm"
+          >
+            Disconnect Wallet
+          </Button>
+        </VStack>
+      </Box>
     )
   }
 
