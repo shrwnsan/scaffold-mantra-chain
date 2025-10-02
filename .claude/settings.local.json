@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git worktree add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git worktree:*)",
+      "Read(//Users/karma/Developer/scaffold-security-deps/**)",
+      "Bash(npm audit:*)",
+      "Bash(npm view:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout:*)",
+      "Read(//Users/karma/Developer/scaffold-security-providers/**)",
+      "WebSearch",
+      "Bash(npm run dev:*)",
+      "Read(//Users/karma/Developer/scaffold-security-contract/**)",
+      "Bash(git add:*)",
+      "Read(//Users/karma/Developer/scaffold-security-docs/**)",
+      "Bash(git merge:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(npm run preview:*)",
+      "Bash(node:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

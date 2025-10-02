@@ -1,0 +1,147 @@
+{
+  "passed": 8,
+  "failed": 0,
+  "total": 8,
+  "details": [
+    {
+      "timestamp": "2025-10-02T07:14:07.271Z",
+      "type": "info",
+      "message": "🚀 Starting Scaffold MANTRA Chain Integration Tests"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.272Z",
+      "type": "info",
+      "message": "============================================================"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "info",
+      "message": "Running test: Dependencies Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "success",
+      "message": "✅ PASSED: Dependencies Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "info",
+      "message": "Running test: Provider Architecture Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "success",
+      "message": "✅ PASSED: Provider Architecture Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "info",
+      "message": "Running test: MANTRA Chain Configuration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "success",
+      "message": "✅ PASSED: MANTRA Chain Configuration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "info",
+      "message": "Running test: Contract Hooks Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "success",
+      "message": "✅ PASSED: Contract Hooks Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "info",
+      "message": "Running test: Documentation Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "success",
+      "message": "✅ PASSED: Documentation Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.273Z",
+      "type": "info",
+      "message": "Running test: Build System Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.274Z",
+      "type": "success",
+      "message": "✅ PASSED: Build System Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:07.274Z",
+      "type": "info",
+      "message": "Running test: Security Improvements Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.113Z",
+      "type": "info",
+      "message": "Security audit completed with some remaining vulnerabilities"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.113Z",
+      "type": "success",
+      "message": "✅ PASSED: Security Improvements Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.113Z",
+      "type": "info",
+      "message": "Running test: Development Workflow Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "info",
+      "message": "Dependencies installed correctly without legacy flags"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "success",
+      "message": "✅ PASSED: Development Workflow Integration"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "info",
+      "message": "============================================================"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "info",
+      "message": "📊 INTEGRATION TEST SUMMARY"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "info",
+      "message": "Total Tests: 8"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "success",
+      "message": "Passed: 8"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "info",
+      "message": "Failed: 0"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "info",
+      "message": "Success Rate: 100.0%"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "success",
+      "message": "🎉 ALL INTEGRATION TESTS PASSED!"
+    },
+    {
+      "timestamp": "2025-10-02T07:14:08.368Z",
+      "type": "success",
+      "message": "The security migration has been successfully integrated!"
+    }
+  ]
+}
