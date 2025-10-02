@@ -5,15 +5,20 @@ This file provides context and instructions to help AI coding agents work on thi
 ## Project Overview
 Scaffold MANTRA Chain is a React-based dApp scaffold for MANTRA Chain, a Cosmos SDK-based blockchain. The project provides a foundation with wallet integration, smart contract interaction capabilities, and a modern UI framework.
 
-The project uses empty template files with the intention of allowing developers to implement blockchain interactions using the CosmJS library and MANTRA Chain.
+The project provides template files with basic setup to allow developers to implement blockchain interactions using the CosmJS library and MANTRA Chain. The App.jsx includes a basic Chakra UI layout and index.jsx provides React rendering setup.
 
 ## File Structure
 ```
 src/
-├── App.js          # Main application component (currently empty)
-├── index.js        # Entry point (currently empty)
-└── hooks/
-    └── useTodoContract.js # Contract interaction hook (currently empty)
+├── App.jsx         # Main application component (basic Chakra UI setup)
+├── index.jsx       # Entry point (React rendering)
+├── hooks/
+│   └── useTodoContract.js # Contract interaction hook (template with functions)
+└── ...
+Additional files:
+├── index.html      # HTML template for Vite
+├── vite.config.js  # Vite configuration for React
+└── dist/           # Build output directory (generated)
 ```
 
 ## Build and Test Commands
@@ -45,6 +50,7 @@ src/
 - Follow existing project structure and file naming conventions
 - Use camelCase for JavaScript variables and functions
 - Use consistent indentation (2 spaces for JSX)
+- Note: React components use .jsx extensions for proper Vite JSX handling
 
 ## Testing Instructions
 - Test React components using React Testing Library
