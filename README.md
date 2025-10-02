@@ -1,71 +1,67 @@
 # Scaffold MANTRA Chain
 
-## Project Initialization
-To initialize your new Node.js project, run:
-```bash
-npm init -y
-```
+A React-based starter template for building decentralized applications (dApps) on the MANTRA Chain blockchain. This scaffold provides a pre-configured foundation with wallet integration, smart contract interaction capabilities, and a modern UI framework.
 
-## Install Necessary Dependencies
-To install the necessary dependencies based on the current tech stack, run:
-```bash
-npm install --legacy-peer-deps
-```
+## Features
 
-### Dependencies
-The following packages are included in the project:
-- `@chakra-ui/react`: UI components for React
-- `@chakra-ui/icons`: Icons for Chakra UI
-- `@cosmjs/cosmwasm-stargate`: CosmWasm client for interacting with smart contracts
-- `@cosmjs/encoding`: Encoding utilities for CosmJS
-- `@cosmjs/stargate`: Stargate client for interacting with Cosmos SDK applications
-- `@cosmjs/tendermint-rpc`: RPC client for Tendermint
-- `dotenv`: Module to load environment variables from a `.env` file
-- `framer-motion`: Animation library for React
-- `graz`: A package for managing state and effects in React
-- `react`: A JavaScript library for building user interfaces
-- `react-dom`: React's DOM renderer
-- `vite`: A build tool that aims to provide a faster and leaner development experience for modern web projects
+- React frontend with Chakra UI and Framer Motion for animations
+- Pre-configured CosmJS libraries for MANTRA Chain integration
+- Wallet connection via graz library
+- Vite for fast development experience
+- Ready-to-use contract interaction hooks structure
 
-## Notes
-- If you encounter npm errors regarding dependency conflicts, you can use the `--legacy-peer-deps` flag during installation.
-- The `package-lock.json` file is included in the repository to ensure consistent dependency versions across different environments.
+## Prerequisites
 
-## Vulnerabilities
-After running `npm install`, you may see warnings about deprecated packages and vulnerabilities. You can address these by running:
-```bash
-npm audit fix
-```
-Or, to address all issues, including potential breaking changes:
-```bash
-npm audit fix --force
-```
+- Node.js installed on your system
 
-## Tech Stack Overview
+## Quick Start
 
-This project utilizes a variety of technologies and libraries to create a robust application. These technologies work together to provide a seamless development experience and robust application performance.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+
+3. Start development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open http://localhost:5173 to view the application
+
+## Tech Stack
 
 ### Frontend:
-* React: A JavaScript library for building user interfaces.
-* Chakra UI: A component library for React that provides accessible and customizable components.
-* Framer Motion: A library for animations in React applications.
-* Vite: A build tool that provides a fast development environment for modern web projects.
+- **React**: JavaScript library for building user interfaces
+- **Chakra UI**: Accessible and customizable component library
+- **Framer Motion**: Animation library for React
+- **Vite**: Fast build tool
 
-### Backend:
-* CosmJS: A set of libraries for interacting with Cosmos SDK-based blockchains, including:
-  * @cosmjs/cosmwasm-stargate: For interacting with CosmWasm smart contracts.
-  * @cosmjs/stargate: For interacting with the Cosmos SDK.
-  * @cosmjs/tendermint-rpc: For communicating with Tendermint nodes.
-* Node.js: A JavaScript runtime for building server-side applications.
+### Blockchain Integration:
+- **CosmJS**: Libraries for Cosmos SDK-based blockchains
+- **Graz**: React hooks for wallet management
 
-### Other:
-* dotenv: A module for loading environment variables from a .env file.
-* Graz: A library that seems to be used for some custom functionalities, possibly related to your blockchain interactions.
+## Development
 
-### Language:
-* JavaScript: The primary language for the frontend.
-* Rust: Used for the smart contracts.
+The project includes a basic structure with template files:
+- `src/App.js` - Main application component
+- `src/hooks/useTodoContract.js` - Custom hook for smart contract interactions
+
+## Security Considerations
+
+⚠️ **Important Security Note**: This project has known security vulnerabilities in transitive dependencies (13 total: 2 moderate, 5 high, 6 critical) from underlying blockchain libraries. See AGENTS.md for detailed security analysis and mitigation strategies.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
 ## License
 
-This project is licensed under the terms of the [LICENSE.md](LICENSE.md) file.
+This project is licensed under the terms specified in the LICENSE.md file.

@@ -19,21 +19,21 @@
   "license": "ISC",
   "description": "Scaffold for building dApps on MANTRA Chain",
   "dependencies": {
-    "@chakra-ui/icons": "^2.2.4",
-    "@chakra-ui/react": "^3.5.1",
+    "@chakra-ui/icons": "2.2.4",
+    "@chakra-ui/react": "3.27.0",
     "@cosmjs/cosmwasm-stargate": "0.31.3",
     "@cosmjs/encoding": "0.31.3",
     "@cosmjs/stargate": "0.31.3",
     "@cosmjs/tendermint-rpc": "0.31.3",
-    "dotenv": "^16.4.7",
-    "framer-motion": "^12.0.5",
-    "graz": "^0.1.31",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "vite": "^5.4.11"
+    "dotenv": "16.6.1",
+    "framer-motion": "12.23.22",
+    "graz": "0.1.31",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "vite": "5.4.20"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4"
+    "@vitejs/plugin-react": "4.7.0"
   },
   "repository": {
     "type": "git",

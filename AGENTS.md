@@ -1,104 +1,115 @@
-# Scaffold MANTRA Chain - Project Context
+# AI Agent Development Guide for Scaffold MANTRA Chain
+
+This file provides context and instructions to help AI coding agents work on this project effectively.
 
 ## Project Overview
-Scaffold MANTRA Chain is a React-based frontend application designed to interact with MANTRA Chain, which is a Cosmos SDK-based blockchain. The project includes smart contract integration capabilities using CosmJS libraries and provides a UI framework using Chakra UI and Framer Motion for animations.
+Scaffold MANTRA Chain is a React-based dApp scaffold for MANTRA Chain, a Cosmos SDK-based blockchain. The project provides a foundation with wallet integration, smart contract interaction capabilities, and a modern UI framework.
 
-This appears to be a starter template or scaffold for building decentralized applications (dApps) on the MANTRA Chain blockchain, with pre-configured dependencies and a basic project structure.
+The project uses empty template files with the intention of allowing developers to implement blockchain interactions using the CosmJS library and MANTRA Chain.
 
-## Architecture & Tech Stack
-
-### Frontend:
-- **React**: JavaScript library for building user interfaces
-- **Chakra UI**: Component library for React that provides accessible and customizable components
-- **Framer Motion**: Animation library for React applications
-- **Vite**: Build tool that provides a fast development environment
-
-### Blockchain Integration:
-- **CosmJS**: Suite of libraries for interacting with Cosmos SDK-based blockchains
-  - `@cosmjs/cosmwasm-stargate`: For interacting with CosmWasm smart contracts
-  - `@cosmjs/stargate`: For interacting with the Cosmos SDK
-  - `@cosmjs/tendermint-rpc`: For communicating with Tendermint nodes
-  - `@cosmjs/encoding`: Encoding utilities for CosmJS
-
-### Other Dependencies:
-- `dotenv`: Module for loading environment variables from `.env` files
-- `graz`: Library for managing state and effects in React, likely used for blockchain interactions
-
-## Project Structure
+## File Structure
 ```
 src/
 ├── App.js          # Main application component (currently empty)
-├── index.js        # Application entry point (currently empty)
+├── index.js        # Entry point (currently empty)
 └── hooks/
-    └── useTodoContract.js # Custom hook for smart contract interaction (currently empty)
+    └── useTodoContract.js # Contract interaction hook (currently empty)
 ```
 
-## Building and Running the Project
+## Build and Test Commands
+- Install dependencies: `npm install --legacy-peer-deps`
+- Start development server: `npm run dev`
+- Build for production: `npm run build`
+- Preview production build: `npm run preview`
+- Install dependencies with exact versions: `npm ci`
 
-### Prerequisites
-- Node.js installed on your system
+## Technology Stack
+- **Frontend**: React 18.3.1 with Chakra UI and Framer Motion
+- **Build Tool**: Vite 5.4.20
+- **Blockchain**: CosmJS 0.31.3 (cosmwasm-stargate, stargate, tendermint-rpc, encoding)
+- **Wallet Integration**: graz 0.1.31
+- **Environment**: dotenv 16.6.1
 
-### Installation
-1. Initialize the project:
-   ```bash
-   npm init -y
-   ```
+## Key Dependencies & Constraints
+- CosmJS packages locked at 0.31.3 for graz 0.1.31 compatibility
+- React locked at 18.3.1 for ecosystem compatibility  
+- Legacy peer dependencies required during installation due to graz/cosmjs compatibility
+- Dependencies pinned to exact versions for deterministic builds
+- Security vulnerabilities exist in transitive dependencies (see Security section)
 
-2. Install dependencies:
-   ```bash
-   npm install --legacy-peer-deps
-   ```
+## Code Style Guidelines
+- Follow React hooks best practices and naming conventions (hooks should start with "use")
+- Use Chakra UI components for consistent UI design
+- Implement proper error handling for asynchronous operations
+- Use environment variables for configuration
+- Follow existing project structure and file naming conventions
+- Use camelCase for JavaScript variables and functions
+- Use consistent indentation (2 spaces for JSX)
 
-### Notes
-- If you encounter npm errors regarding dependency conflicts, use the `--legacy-peer-deps` flag during installation
-- After installation, you may see warnings about deprecated packages and vulnerabilities. Address them with:
-  ```bash
-  npm audit fix
-  ```
-  Or for all issues (with potential breaking changes):
-  ```bash
-  npm audit fix --force
-  ```
+## Testing Instructions
+- Test React components using React Testing Library
+- Create integration tests for blockchain interactions using CosmJS test utilities
+- Test wallet connection flows in different states (disconnected, connecting, connected)
+- Verify contract queries and transactions work properly
+- Test error handling scenarios
 
-## Development Conventions
+## Implementation Guidelines
 
-### Current State
-The project includes a basic structure with empty files, indicating it's a template ready for development. The naming convention `useTodoContract.js` suggests that hooks for blockchain contract interactions should follow the React hook naming convention (starting with "use").
+### For App.js Implementation
+- Wrap application with QueryClientProvider and GrazProvider from react-query and graz respectively
+- Implement wallet connection UI using graz hooks
+- Include proper error boundary handling
+- Follow Chakra UI component patterns
+- Include responsive design considerations
 
-### Expected Patterns
-- Smart contract interaction hooks in the `src/hooks/` directory
-- Component-based architecture following React best practices
-- CosmJS libraries used for blockchain interactions
-- Chakra UI components for consistent UI design
+### For useTodoContract.js Implementation  
+- Implement CosmWasm contract interaction functions
+- Use useCosmWasmClient for queries and useSigningCosmWasmClient for transactions
+- Include proper error handling and loading states
+- Follow React hook patterns with appropriate return types
+- Implement both query and execute functions for contract interactions
 
-## Testing
-The project template includes a basic test script in `package.json` that currently just echoes an error message. You should implement proper tests for your components and blockchain interactions using a testing framework like Jest or React Testing Library.
+### Security Implementation Patterns
+- Validate addresses before any blockchain operations
+- Implement proper error sanitization for UI display
+- Use safe execution patterns for contract interactions
 
-## Future Development
-The current project is a scaffold with empty files, ready for implementation. When building features, consider:
-- Implementing the main App component
-- Developing the blockchain interaction hooks
-- Following React best practices for state management
-- Using the CosmJS libraries for blockchain operations
-- Leveraging Chakra UI for consistent design
-- Adding proper error handling for blockchain interactions
+## Security Considerations
+- **Current State**: 13 vulnerabilities exist (2 moderate, 5 high, 6 critical) in transitive dependencies
+- **Axios vulnerabilities** in @cosmjs/tendermint-rpc (high severity)
+- **Elliptic cryptographic vulnerability** in @walletconnect/utils (critical)
+- **SES vulnerabilities** in @cosmsnap/snapper (critical)
+- **esbuild vulnerability** in vite (moderate)
 
-## License
-This project is licensed under the terms specified in the LICENSE.md file.
+### Security Best Practices
+- Validate all user inputs before blockchain operations
+- Sanitize error messages before showing to users
+- Never expose sensitive data in console logs
+- Consider running blockchain operations through backend when possible
 
-## Recent Changes
-Recent updates to this project include:
+## Environment Setup
+1. Install Node.js 18+ and npm
+2. Run `npm install --legacy-peer-deps` to install dependencies
+3. Set up environment variables for RPC endpoints and contract addresses
+4. Configure wallet connection options in GrazProvider
 
-### Dependency Resolution (October 2025)
-- Resolved peer dependency conflicts between `graz` (0.1.31) and CosmJS packages
-- Downgraded CosmJS packages to version 0.31.3 for compatibility
-- Changed React from version 19 to 18.3.1 for ecosystem compatibility
-- Updated Vite to version 5.4.11
-- Added development scripts: `dev`, `build`, `preview`
-- Added `@vitejs/plugin-react` as a dev dependency
+## Development Workflow
+- When implementing new features, consider the security implications of any blockchain interactions
+- Always test wallet connections in various states
+- Verify that all contract interactions handle errors gracefully
+- Use the development server to test UI components
+- Run production build to ensure everything works end-to-end
 
-### Security Note
-While dependency conflicts have been resolved, there are still outstanding security vulnerabilities (13 total: 2 moderate, 5 high, 6 critical) from underlying blockchain libraries. These vulnerabilities are in transitive dependencies and would require major version upgrades to resolve, which may introduce breaking changes.
+## Migration Path for Security Improvements
+- Upgrading to graz 0.3.x would resolve security vulnerabilities
+- Requires updating CosmJS packages to >=0.32.4
+- Breaking changes include: provider wrapping with QueryClientProvider, chain configuration changes from GrazChain to ChainInfo, hook parameter format changes from positional to object parameters
+- Would need to update all blockchain interaction code
+- Recommended to perform migration in a dedicated branch with thorough testing
 
-### Project Context Documentation
-- Created comprehensive AGENTS.md file to provide project context for future development
+## PR Instructions
+- Include tests for any new functionality
+- Update documentation if adding new features
+- Ensure all security considerations are addressed
+- Verify the application builds and runs after changes
+- Update the AGENTS.md file if adding new conventions or requirements
