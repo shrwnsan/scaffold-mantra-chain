@@ -1,74 +1,56 @@
 # Scaffold MANTRA Chain
 
-A React-based starter template for building decentralized applications (dApps) on the MANTRA Chain blockchain. This scaffold provides a pre-configured foundation with wallet integration, smart contract interaction capabilities, and a modern UI framework.
-
-## Features
-
-- React frontend with Chakra UI and Framer Motion for animations
-- Pre-configured CosmJS libraries for MANTRA Chain integration
-- Wallet connection via graz library with React Query integration
-- Vite for fast development experience
-- Ready-to-use contract interaction hooks structure
-- Security-first architecture with modern dependency management
-
-## Prerequisites
-
-- Node.js 18+ installed on your system
+A simple React starter template for building dApps on MANTRA Chain with wallet integration and smart contract interaction capabilities.
 
 ## Quick Start
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
+```bash
+git clone <repository-url>
+cd scaffold-mantra-chain
+npm install
+npm run dev
+```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+Open http://localhost:5173 to view the application.
 
-3. Start development server:
-   ```bash
-   npm run dev
-   ```
+## What's Included
 
-4. Open http://localhost:5173 to view the application
+- React 18 + Chakra UI for UI components
+- Vite for fast development
+- MANTRA Chain wallet integration via graz 0.3.7
+- CosmJS 0.36.0 for blockchain interactions
+- React Query for state management
+- Template contract hook (`src/hooks/useTodoContract.js`)
 
-## Tech Stack
+## Environment Variables
 
-### Frontend:
-- **React**: JavaScript library for building user interfaces
-- **Chakra UI**: Accessible and customizable component library
-- **Framer Motion**: Animation library for React
-- **Vite**: Fast build tool
-- **TanStack React Query**: Data fetching and state management
+Create a `.env` file:
 
-### Blockchain Integration:
-- **CosmJS 0.36.0**: Latest stable libraries for Cosmos SDK-based blockchains
-- **Graz 0.3.7**: Modern React hooks for wallet management with enhanced security
+```env
+VITE_MANTRA_RPC_URL=https://rpc.mantrachain.io
+VITE_CONTRACT_ADDRESS=your_contract_address_here
+```
 
-## Development
+## Project Structure
 
-The project includes a basic structure with template files:
-- `src/App.jsx` - Main application component with provider setup
-- `src/hooks/useTodoContract.js` - Custom hook for smart contract interactions
+```
+src/
+├── App.jsx         # Main app with GrazProvider and wallet hooks
+├── index.jsx       # Entry point with QueryClientProvider
+└── hooks/
+    └── useTodoContract.js  # Contract interaction template
+```
 
-## Security Improvements
+## Development Commands
 
-✅ **Security Status**: All critical vulnerabilities have been resolved in this version!
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
 
-- **Updated Dependencies**: Upgraded to graz 0.3.7 and CosmJS 0.36.0
-- **React Query Integration**: Added proper state management with QueryClientProvider
-- **Modern Architecture**: Implements provider pattern with proper error handling
-- **No Legacy Dependencies**: Removed `--legacy-peer-deps` requirement
+## Security Status
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+✅ All vulnerabilities resolved. Uses modern graz 0.3.7 and CosmJS 0.36.0 with no legacy dependencies.
 
 ## License
 
-This project is licensed under the terms specified in the LICENSE.md file.
+See LICENSE.md file.
