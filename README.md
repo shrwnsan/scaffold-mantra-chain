@@ -6,13 +6,14 @@ A React-based starter template for building decentralized applications (dApps) o
 
 - React frontend with Chakra UI and Framer Motion for animations
 - Pre-configured CosmJS libraries for MANTRA Chain integration
-- Wallet connection via graz library
+- Wallet connection via graz library with React Query integration
 - Vite for fast development experience
 - Ready-to-use contract interaction hooks structure
+- Security-first architecture with modern dependency management
 
 ## Prerequisites
 
-- Node.js installed on your system
+- Node.js 18+ installed on your system
 
 ## Quick Start
 
@@ -23,7 +24,7 @@ A React-based starter template for building decentralized applications (dApps) o
 
 2. Install dependencies:
    ```bash
-   npm install --legacy-peer-deps
+   npm install
    ```
 
 3. Start development server:
@@ -40,20 +41,26 @@ A React-based starter template for building decentralized applications (dApps) o
 - **Chakra UI**: Accessible and customizable component library
 - **Framer Motion**: Animation library for React
 - **Vite**: Fast build tool
+- **TanStack React Query**: Data fetching and state management
 
 ### Blockchain Integration:
-- **CosmJS**: Libraries for Cosmos SDK-based blockchains
-- **Graz**: React hooks for wallet management
+- **CosmJS 0.36.0**: Latest stable libraries for Cosmos SDK-based blockchains
+- **Graz 0.3.7**: Modern React hooks for wallet management with enhanced security
 
 ## Development
 
 The project includes a basic structure with template files:
-- `src/App.js` - Main application component
+- `src/App.jsx` - Main application component with provider setup
 - `src/hooks/useTodoContract.js` - Custom hook for smart contract interactions
 
-## Security Considerations
+## Security Improvements
 
-⚠️ **Important Security Note**: This project has known security vulnerabilities in transitive dependencies (13 total: 2 moderate, 5 high, 6 critical) from underlying blockchain libraries. See AGENTS.md for detailed security analysis and mitigation strategies.
+✅ **Security Status**: All critical vulnerabilities have been resolved in this version!
+
+- **Updated Dependencies**: Upgraded to graz 0.3.7 and CosmJS 0.36.0
+- **React Query Integration**: Added proper state management with QueryClientProvider
+- **Modern Architecture**: Implements provider pattern with proper error handling
+- **No Legacy Dependencies**: Removed `--legacy-peer-deps` requirement
 
 ## Contributing
 
