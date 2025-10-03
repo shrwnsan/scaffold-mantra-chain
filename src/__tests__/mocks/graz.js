@@ -1,0 +1,99 @@
+import { renderHook, act } from '@testing-library/react'
+import { ReactNode } from 'react'
+
+// Mock account data
+export const mockAccount = {
+  name: 'Keplr',
+  bech32Address: 'mantra1example123456789abcdefghijklmnopqrstuvwxyz',
+  pubkey: 'A1B2C3D4E5F67890123456789012345678901234',
+  algo: 'secp256k1' as const,
+}
+
+// Mock graz hooks
+export const createMockUseAccount = (overrides = {}) => {
+  return {
+    data: null,
+    isConnected: false,
+    isLoading: false,
+    error: null,
+    reconnect: jest.fn(),
+    disconnect: jest.fn(),
+    ...overrides,
+  }
+}
+
+export const createMockUseConnect = (overrides = {}) => {
+  return {
+    connect: jest.fn(),
+    isLoading: false,
+    error: null,
+    isConnecting: false,
+    ...overrides,
+  }
+}
+
+export const createMockUseDisconnect = (overrides = {}) => {
+  return {
+    disconnect: jest.fn(),
+    isLoading: false,
+    error: null,
+    ...overrides,
+  }
+}
+
+// Mock GrazProvider context
+export const createMockGrazContext = (overrides = {}) => {
+  return {
+    chains: [],
+    activeChain: null,
+    setActiveChain: jest.fn(),
+    ...overrides,
+  }
+}
+
+// Mock connect function behavior
+export const createMockConnectFunction = (shouldSucceed = true) => {
+  return jest.fn().mockImplementation(async () => {
+    if (!shouldSucceed) {
+      throw new Error('Connection failed')
+    }
+    return Promise.resolve()
+  })
+}
+
+// Mock disconnect function behavior
+export const createMockDisconnectFunction = (shouldSucceed = true) => {
+  return jest.fn().mockImplementation(async () => {
+    if (!shouldSucceed) {
+      throw new Error('Disconnection failed')
+    }
+    return Promise.resolve()
+  })
+}
+
+// Test data for different connection states
+export const mockStates = {
+  disconnected: {
+    useAccount: createMockUseAccount({ isConnected: false, data: null }),
+    useConnect: createMockUseConnect(),
+    useDisconnect: createMockUseDisconnect(),
+  },
+  connected: {
+    useAccount: createMockUseAccount({
+      isConnected: true,
+      data: mockAccount
+    }),
+    useConnect: createMockUseConnect(),
+    useDisconnect: createMockUseDisconnect(),
+  },
+  connecting: {
+    useAccount: createMockUseAccount({ isConnected: false, isLoading: true }),
+    useConnect: createMockUseConnect({ isConnecting: true, isLoading: true }),
+    useDisconnect: createMockUseDisconnect(),
+  },
+  error: {
+    useAccount: createMockUseAccount({ error: new Error('Account error') }),
+    useConnect: createMockUseConnect({ error: new Error('Connection error') }),
+    useDisconnect: createMockUseDisconnect(),
+  }
+}
