@@ -1,4 +1,5 @@
 // Mock utilities for graz hooks and wallet interactions
+import { vi } from 'vitest'
 
 // Mock account data
 export const mockAccount = {
@@ -16,13 +17,13 @@ export const mockAccount = {
 }
 
 // Mock graz hooks
-export const mockUseAccount = jest.fn()
-export const mockUseConnect = jest.fn()
-export const mockUseDisconnect = jest.fn()
-export const mockUseBalance = jest.fn()
-export const mockUseStake = jest.fn()
-export const mockUseCosmWasmClient = jest.fn()
-export const mockUseSigningCosmWasmClient = jest.fn()
+export const mockUseAccount = vi.fn()
+export const mockUseConnect = vi.fn()
+export const mockUseDisconnect = vi.fn()
+export const mockUseBalance = vi.fn()
+export const mockUseStake = vi.fn()
+export const mockUseCosmWasmClient = vi.fn()
+export const mockUseSigningCosmWasmClient = vi.fn()
 
 // Default successful mock implementations
 mockUseAccount.mockReturnValue({

@@ -57,9 +57,6 @@ export default defineConfig({
     // Global variables
     globals: true,
 
-    // DOM testing library settings
-    globals: true,
-
     // Isolate tests
     isolate: true,
 

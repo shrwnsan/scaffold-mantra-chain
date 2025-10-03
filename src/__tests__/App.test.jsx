@@ -1,16 +1,16 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { describe, it, expect, beforeEach, afterEach, jest } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import App from '../App.jsx'
-import { renderWithChakra, findChakraButton, findChakraHeading, findChakraText, expectButtonToBeEnabled, expectButtonToBeDisabled } from './utils/chakra-testing.js'
+import { renderWithChakra, findChakraButton, findChakraHeading, findChakraText, expectButtonToBeEnabled, expectButtonToBeDisabled } from './utils/chakra-testing.jsx'
 import { mockStates, mockAccount, createMockConnectFunction, createMockDisconnectFunction } from './mocks/graz.js'
 import { testResponsiveRendering, VIEWPORTS, setViewport, expectResponsiveVisibility } from './helpers/responsive-testing.js'
 
 // Mock the graz module
-jest.mock('graz', () => ({
+vi.mock('graz', () => ({
   GrazProvider: ({ children }) => children,
-  useAccount: jest.fn(),
-  useConnect: jest.fn(),
-  useDisconnect: jest.fn(),
+  useAccount: vi.fn(),
+  useConnect: vi.fn(),
+  useDisconnect: vi.fn(),
 }))
 
 const { useAccount, useConnect, useDisconnect } = await import('graz')
