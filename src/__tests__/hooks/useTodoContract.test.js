@@ -1,13 +1,8 @@
 // Tests for useTodoContract hook template
 
 import { describe, test, expect, beforeEach, afterAll, vi } from 'vitest'
-import { renderHook, act, waitFor } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 import useTodoContract from '../../hooks/useTodoContract'
-import {
-  renderHookWithProviders,
-  waitForLoadingToFinish,
-  waitForError,
-} from '../utils/hook-testing-utils'
 
 // Mock console methods to reduce noise in tests
 const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
@@ -27,9 +22,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('Initial State', () => {
     test('should return initial state with correct default values', () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       expect(result.current.loading).toBe(false)
       expect(result.current.error).toBe(null)
@@ -38,18 +31,14 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should not have any async operations running on mount', () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       expect(result.current.loading).toBe(false)
       expect(result.current.error).toBe(null)
     })
 
     test('should maintain state across re-renders', () => {
-      const { result, rerender } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result, rerender } = renderHook(() => useTodoContract())
 
       expect(result.current.loading).toBe(false)
       expect(result.current.error).toBe(null)
@@ -65,9 +54,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('queryTodos Function', () => {
     test('should call queryTodos and return empty array as template behavior', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       let queryResult
       await act(async () => {
@@ -81,9 +68,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should set loading state during queryTodos execution', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // Start the query and wait for it
       await act(async () => {
@@ -97,9 +82,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle multiple concurrent queryTodos calls', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       const promises = [
         act(() => result.current.queryTodos()),
@@ -115,9 +98,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should return consistent empty array for template implementation', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       const queryResults = await Promise.all([
         act(() => result.current.queryTodos()),
@@ -133,9 +114,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('addTodo Function', () => {
     test('should call addTodo and return success object as template behavior', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       let addResult
       await act(async () => {
@@ -149,9 +128,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should set loading state during addTodo execution', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // Start the add operation and wait for it
       await act(async () => {
@@ -165,9 +142,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle empty todo text', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       let addResult
       await act(async () => {
@@ -181,9 +156,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle null/undefined todo text', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       await act(async () => {
         await result.current.addTodo(null)
@@ -203,9 +176,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle multiple concurrent addTodo calls', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       const promises = [
         act(() => result.current.addTodo('Todo 1')),
@@ -225,9 +196,7 @@ describe('useTodoContract Hook Template', () => {
 
     test('should handle very long todo text', async () => {
       const longText = 'a'.repeat(1000)
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       await act(async () => {
         await result.current.addTodo(longText)
@@ -239,9 +208,7 @@ describe('useTodoContract Hook Template', () => {
 
     test('should handle special characters in todo text', async () => {
       const specialText = 'Test with émojis 🚀 and sp€cial chars!'
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       await act(async () => {
         await result.current.addTodo(specialText)
@@ -254,9 +221,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('Combined Operations', () => {
     test('should handle queryTodos followed by addTodo', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // First query
       await act(async () => {
@@ -275,9 +240,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle addTodo followed by queryTodos', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // First add
       await act(async () => {
@@ -296,9 +259,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle rapid state changes', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // Rapid operations
       await act(async () => {
@@ -314,9 +275,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle alternating operations', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       const operations = [
         () => result.current.queryTodos(),
@@ -341,9 +300,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('Hook Lifecycle', () => {
     test('should clean up properly on unmount', () => {
-      const { result, unmount } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result, unmount } = renderHook(() => useTodoContract())
 
       // Hook is working
       expect(result.current.queryTodos).toBeInstanceOf(Function)
@@ -356,9 +313,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle multiple re-renders', () => {
-      const { result, rerender } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result, rerender } = renderHook(() => useTodoContract())
 
       expect(result.current.loading).toBe(false)
 
@@ -374,9 +329,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('Template Implementation Verification', () => {
     test('should log template messages to console', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       await act(async () => {
         await result.current.queryTodos()
@@ -393,9 +346,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should maintain consistent return types', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       const queryResult = await act(() => result.current.queryTodos())
       const addResult = await act(() => result.current.addTodo('Test'))
@@ -406,9 +357,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle all function properties', () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       const { loading, error, queryTodos, addTodo } = result.current
 
@@ -421,9 +370,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('Error Handling Template', () => {
     test('should provide template for error handling', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // The template doesn't actually throw errors, but provides the structure
       // for when real CosmJS implementation is added
@@ -438,9 +385,7 @@ describe('useTodoContract Hook Template', () => {
 
   describe('Performance Considerations', () => {
     test('should not cause memory leaks with repeated calls', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // Make many calls
       for (let i = 0; i < 20; i++) {
@@ -454,9 +399,7 @@ describe('useTodoContract Hook Template', () => {
     })
 
     test('should handle rapid consecutive calls without errors', async () => {
-      const { result } = renderHookWithProviders(() => useTodoContract(), {
-        wrapper: 'full',
-      })
+      const { result } = renderHook(() => useTodoContract())
 
       // Rapid calls
       const promises = Array.from({ length: 10 }, (_, i) =>

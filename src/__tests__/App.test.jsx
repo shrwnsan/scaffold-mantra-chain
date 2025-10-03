@@ -18,12 +18,12 @@ const { useAccount, useConnect, useDisconnect } = await import('graz')
 describe('App Component', () => {
   beforeEach(() => {
     // Reset all mocks before each test
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   afterEach(() => {
     // Clean up after each test
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   })
 
   describe('Basic Rendering', () => {

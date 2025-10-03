@@ -2,7 +2,8 @@
 
 import { renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactElement } from 'react'
+import { vi } from 'vitest'
+import React from 'react'
 
 // Create a test-specific QueryClient
 export const createTestQueryClient = () => {
@@ -204,7 +205,7 @@ export const testHookRerender = (hook, propsArray, options = {}) => {
 
 // Helper to test hook cleanup
 export const testHookCleanup = (hook, options = {}) => {
-  const { onCleanup = jest.fn() } = options
+  const { onCleanup = vi.fn() } = options
 
   const result = renderHookWithProviders(() => hook(onCleanup), options)
 
@@ -314,7 +315,7 @@ export const testReactQueryIntegration = async (hook, options = {}) => {
 
 // Utility to create mock async functions with delays
 export const createMockAsync = (returnValue, delay = 100, shouldFail = false) => {
-  return jest.fn().mockImplementation(async (...args) => {
+  return vi.fn().mockImplementation(async (...args) => {
     await new Promise(resolve => setTimeout(resolve, delay))
     if (shouldFail) {
       throw new Error('Mock async function failed')

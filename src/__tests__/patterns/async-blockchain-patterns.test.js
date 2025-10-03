@@ -22,7 +22,7 @@ import {
 } from '../utils/hook-testing-utils'
 
 // Mock graz module
-jest.mock('graz', () => {
+vi.mock('graz', () => {
   const mockGraz = require('../mocks/graz.mock').mockGraz
   return mockGraz
 })

@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react'
-import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import React from 'react'
 
 // Custom render function with Chakra UI provider
 export const renderWithChakra = (ui, { ...renderOptions } = {}) => {
   const Wrapper = ({ children }) => (
-    <ChakraProvider value={defaultSystem}>
+    <ChakraProvider>
       {children}
     </ChakraProvider>
   )

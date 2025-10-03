@@ -31,7 +31,8 @@
       "Bash(npm run test:run:*)",
       "Bash(npx jest:*)",
       "Bash(tree:*)",
-      "Bash(npm run test:hooks:*)"
+      "Bash(npm run test:hooks:*)",
+      "Bash(npm run test:ci:*)"
     ],
     "deny": [],
     "ask": []
