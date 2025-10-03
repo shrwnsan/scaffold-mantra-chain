@@ -19,7 +19,19 @@
       "Bash(git merge:*)",
       "Bash(git ls-tree:*)",
       "Bash(npm run preview:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Read(//Users/karma/Developer/test-infra-setup/**)",
+      "Read(//Users/karma/Developer/test-hook-tests/**)",
+      "Read(//Users/karma/Developer/**)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm test)",
+      "Bash(npm run test:coverage:*)",
+      "Bash(grep:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run test:run:*)",
+      "Bash(npx jest:*)",
+      "Bash(tree:*)",
+      "Bash(npm run test:hooks:*)"
     ],
     "deny": [],
     "ask": []

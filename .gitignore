@@ -32,6 +32,13 @@ Thumbs.db
 # Coverage directory used by tools like istanbul
 coverage/
 
+# Test results and artifacts
+test-results/
+*.lcov
+
+# Test environment files
+.env.test
+
 # Vite build output
 .vite/
 

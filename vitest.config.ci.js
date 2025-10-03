@@ -1,27 +1,21 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 5173,
-    host: true
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: true,
-    rollupOptions: {
-      external: ['@getpara/graz-integration']
-    }
-  },
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.js'],
+    watch: false,
+    singleThread: true,
+    reporter: ['junit', 'default'],
+    outputFile: {
+      junit: './test-results/junit.xml'
+    },
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text', 'json', 'html', 'lcov'],
       reportsDirectory: './coverage',
       exclude: [
         'node_modules/',
@@ -29,17 +23,18 @@ export default defineConfig({
         '**/*.d.ts',
         '**/*.config.js',
         '**/coverage/**',
-        '**/dist/**'
+        '**/dist/**',
+        'vite.config.js',
+        'vitest.config.*.js'
       ],
       thresholds: {
         global: {
-          branches: 70,
-          functions: 70,
-          lines: 70,
-          statements: 70
+          branches: 80,
+          functions: 80,
+          lines: 80,
+          statements: 80
         }
       }
-    },
-    css: true
+    }
   }
 })
