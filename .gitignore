@@ -42,5 +42,6 @@ test-results/
 # Vite build output
 .vite/
 
-# Package lock files (optional, if you want to track them, remove this line)
-package-lock.json
+# Package lock files - keeping package-lock.json for CI consistency
+# yarn.lock
+# npm-shrinkwrap.json

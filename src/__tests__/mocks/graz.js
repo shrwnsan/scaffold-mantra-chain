@@ -1,12 +1,11 @@
-import { renderHook, act } from '@testing-library/react'
-import { ReactNode } from 'react'
+import { vi } from 'vitest'
 
 // Mock account data
 export const mockAccount = {
   name: 'Keplr',
   bech32Address: 'mantra1example123456789abcdefghijklmnopqrstuvwxyz',
   pubkey: 'A1B2C3D4E5F67890123456789012345678901234',
-  algo: 'secp256k1' as const,
+  algo: 'secp256k1',
 }
 
 // Mock graz hooks
@@ -16,15 +15,15 @@ export const createMockUseAccount = (overrides = {}) => {
     isConnected: false,
     isLoading: false,
     error: null,
-    reconnect: jest.fn(),
-    disconnect: jest.fn(),
+    reconnect: vi.fn(),
+    disconnect: vi.fn(),
     ...overrides,
   }
 }
 
 export const createMockUseConnect = (overrides = {}) => {
   return {
-    connect: jest.fn(),
+    connect: vi.fn(),
     isLoading: false,
     error: null,
     isConnecting: false,
@@ -34,7 +33,7 @@ export const createMockUseConnect = (overrides = {}) => {
 
 export const createMockUseDisconnect = (overrides = {}) => {
   return {
-    disconnect: jest.fn(),
+    disconnect: vi.fn(),
     isLoading: false,
     error: null,
     ...overrides,
@@ -46,14 +45,14 @@ export const createMockGrazContext = (overrides = {}) => {
   return {
     chains: [],
     activeChain: null,
-    setActiveChain: jest.fn(),
+    setActiveChain: vi.fn(),
     ...overrides,
   }
 }
 
 // Mock connect function behavior
 export const createMockConnectFunction = (shouldSucceed = true) => {
-  return jest.fn().mockImplementation(async () => {
+  return vi.fn().mockImplementation(async () => {
     if (!shouldSucceed) {
       throw new Error('Connection failed')
     }
@@ -63,7 +62,7 @@ export const createMockConnectFunction = (shouldSucceed = true) => {
 
 // Mock disconnect function behavior
 export const createMockDisconnectFunction = (shouldSucceed = true) => {
-  return jest.fn().mockImplementation(async () => {
+  return vi.fn().mockImplementation(async () => {
     if (!shouldSucceed) {
       throw new Error('Disconnection failed')
     }

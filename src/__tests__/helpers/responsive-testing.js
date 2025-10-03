@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { ReactElement } from 'react'
+import { vi } from 'vitest'
 
 // Common viewport sizes for testing
 export const VIEWPORTS = {
@@ -11,16 +11,16 @@ export const VIEWPORTS = {
 }
 
 // Mock window.matchMedia for responsive testing
-export const createMockMatchMedia = (matches: boolean) => {
-  return jest.fn().mockImplementation(query => ({
+export const createMockMatchMedia = (matches) => {
+  return vi.fn().mockImplementation(query => ({
     matches,
     media: query,
     onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
   }))
 }
 
@@ -34,11 +34,11 @@ export const setupMockMatchMedia = (initialMatches = false) => {
 
 // Clean up mock matchMedia
 export const cleanupMockMatchMedia = () => {
-  delete (window as any).matchMedia
+  delete window.matchMedia
 }
 
 // Helper to simulate viewport changes
-export const setViewport = (width: number, height: number) => {
+export const setViewport = (width, height) => {
   Object.defineProperty(window, 'innerWidth', {
     writable: true,
     configurable: true,
@@ -57,11 +57,8 @@ export const setViewport = (width: number, height: number) => {
 
 // Helper to test responsive behavior
 export const testResponsiveRendering = async (
-  Component: ReactElement,
-  tests: Array<{
-    viewport: { width: number; height: number }
-    assertions: () => Promise<void> | void
-  }>
+  Component,
+  tests
 ) => {
   const { unmount } = render(Component)
 
@@ -86,14 +83,14 @@ export const testBreakpoints = {
 }
 
 // Helper to test media query conditions
-export const testMediaQuery = (query: string, matches: boolean) => {
+export const testMediaQuery = (query, matches) => {
   const mediaQueryList = window.matchMedia(query)
   expect(mediaQueryList.matches).toBe(matches)
 }
 
 // Test component visibility at different viewport sizes
 export const expectResponsiveVisibility = async (
-  component: ReactElement,
+  component,
   {
     mobileShouldBeVisible = true,
     tabletShouldBeVisible = true,
@@ -137,12 +134,8 @@ export const expectResponsiveVisibility = async (
 
 // Test layout changes at different screen sizes
 export const expectResponsiveLayout = async (
-  component: ReactElement,
-  layoutTests: Array<{
-    viewport: { width: number; height: number }
-    expectedLayout: 'vertical' | 'horizontal' | 'stacked' | 'grid'
-    elements?: string[]
-  }>
+  component,
+  layoutTests
 ) => {
   const { unmount } = render(component)
 
@@ -166,7 +159,7 @@ export const expectResponsiveLayout = async (
 
 // Test text overflow and truncation at different sizes
 export const expectTextResponsive = async (
-  component: ReactElement,
+  component,
   {
     longText,
     shouldTruncateMobile = false,

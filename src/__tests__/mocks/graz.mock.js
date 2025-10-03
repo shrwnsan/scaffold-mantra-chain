@@ -35,14 +35,14 @@ mockUseAccount.mockReturnValue({
 })
 
 mockUseConnect.mockReturnValue({
-  connect: jest.fn().mockResolvedValue(undefined),
+  connect: vi.fn().mockResolvedValue(undefined),
   isLoading: false,
   isError: false,
   error: null,
 })
 
 mockUseDisconnect.mockReturnValue({
-  disconnect: jest.fn().mockResolvedValue(undefined),
+  disconnect: vi.fn().mockResolvedValue(undefined),
   isLoading: false,
   isError: false,
   error: null,
@@ -115,7 +115,7 @@ export const configureAccountMock = (state = 'connected') => {
 }
 
 export const configureConnectMock = (state = 'success') => {
-  const mockConnect = jest.fn()
+  const mockConnect = vi.fn()
 
   switch (state) {
     case 'loading':
@@ -151,7 +151,7 @@ export const configureConnectMock = (state = 'success') => {
 }
 
 export const configureDisconnectMock = (state = 'success') => {
-  const mockDisconnect = jest.fn()
+  const mockDisconnect = vi.fn()
 
   switch (state) {
     case 'loading':
@@ -223,7 +223,7 @@ export const configureBalanceMock = (state = 'success', balanceData = null) => {
 
 // Helper function to setup all graz mocks
 export const setupGrazMocks = (accountState = 'connected', connectState = 'success') => {
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 
   configureAccountMock(accountState)
   configureConnectMock(connectState)
@@ -256,7 +256,7 @@ export const mockGraz = {
 
 // Helper to mock entire graz module
 export const mockGrazModule = () => {
-  jest.mock('graz', () => mockGraz)
+  vi.mock('graz', () => mockGraz)
   return mockGraz
 }
 

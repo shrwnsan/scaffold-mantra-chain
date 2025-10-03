@@ -1,59 +1,60 @@
 // Mock utilities for CosmJS clients and blockchain interactions
+import { vi } from 'vitest'
 
 // Mock CosmWasm client query responses
 export const mockQueryClient = {
-  queryContractSmart: jest.fn(),
-  queryContractRaw: jest.fn(),
-  getChainId: jest.fn(),
-  getHeight: jest.fn(),
-  getAccount: jest.fn(),
-  getBalance: jest.fn(),
-  getAllBalances: jest.fn(),
-  getSupply: jest.fn(),
-  getDenomsMetadata: jest.fn(),
-  getInflation: jest.fn(),
-  getAnnualProvisions: jest.fn(),
-  getStakingParams: jest.fn(),
-  getPool: jest.fn(),
-  getDelegation: jest.fn(),
-  getUnbondingDelegation: jest.fn(),
-  getRedelegations: jest.fn(),
-  getValidators: jest.fn(),
-  getValidator: jest.fn(),
-  getValidatorSigningInfo: jest.fn(),
-  getSlashingParams: jest.fn(),
-  simulate: jest.fn(),
-  getTx: jest.fn(),
-  searchTx: jest.fn(),
-  broadcastTx: jest.fn(),
-  getCodes: jest.fn(),
-  getCode: jest.fn(),
-  getContracts: jest.fn(),
-  getContractCodeHistory: jest.fn(),
-  getContractInfo: jest.fn(),
+  queryContractSmart: vi.fn(),
+  queryContractRaw: vi.fn(),
+  getChainId: vi.fn(),
+  getHeight: vi.fn(),
+  getAccount: vi.fn(),
+  getBalance: vi.fn(),
+  getAllBalances: vi.fn(),
+  getSupply: vi.fn(),
+  getDenomsMetadata: vi.fn(),
+  getInflation: vi.fn(),
+  getAnnualProvisions: vi.fn(),
+  getStakingParams: vi.fn(),
+  getPool: vi.fn(),
+  getDelegation: vi.fn(),
+  getUnbondingDelegation: vi.fn(),
+  getRedelegations: vi.fn(),
+  getValidators: vi.fn(),
+  getValidator: vi.fn(),
+  getValidatorSigningInfo: vi.fn(),
+  getSlashingParams: vi.fn(),
+  simulate: vi.fn(),
+  getTx: vi.fn(),
+  searchTx: vi.fn(),
+  broadcastTx: vi.fn(),
+  getCodes: vi.fn(),
+  getCode: vi.fn(),
+  getContracts: vi.fn(),
+  getContractCodeHistory: vi.fn(),
+  getContractInfo: vi.fn(),
 }
 
 // Mock Signing CosmWasm client for transactions
 export const mockSigningClient = {
   ...mockQueryClient,
-  signAndBroadcast: jest.fn(),
-  sign: jest.fn(),
-  broadcast: jest.fn(),
-  execute: jest.fn(),
-  instantiate: jest.fn(),
-  migrate: jest.fn(),
-  updateAdmin: jest.fn(),
-  clearAdmin: jest.fn(),
-  sendTokens: jest.fn(),
-  delegateTokens: jest.fn(),
-  undelegateTokens: jest.fn(),
-  redelegateTokens: jest.fn(),
-  withdrawRewards: jest.fn(),
-  submitProposal: jest.fn(),
-  voteProposal: jest.fn(),
-  depositProposal: jest.fn(),
-  cancelProposal: jest.fn(),
-  executeContract: jest.fn(),
+  signAndBroadcast: vi.fn(),
+  sign: vi.fn(),
+  broadcast: vi.fn(),
+  execute: vi.fn(),
+  instantiate: vi.fn(),
+  migrate: vi.fn(),
+  updateAdmin: vi.fn(),
+  clearAdmin: vi.fn(),
+  sendTokens: vi.fn(),
+  delegateTokens: vi.fn(),
+  undelegateTokens: vi.fn(),
+  redelegateTokens: vi.fn(),
+  withdrawRewards: vi.fn(),
+  submitProposal: vi.fn(),
+  voteProposal: vi.fn(),
+  depositProposal: vi.fn(),
+  cancelProposal: vi.fn(),
+  executeContract: vi.fn(),
 }
 
 // Mock transaction responses
@@ -125,7 +126,7 @@ export const mockContractExecuteResponse = {
 // Helper function to setup CosmJS mocks
 export const setupCosmJSMocks = () => {
   // Reset all mocks before setting them up
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 
   // Setup default success responses
   mockQueryClient.queryContractSmart.mockResolvedValue(mockContractQueryResponse)
@@ -165,8 +166,8 @@ export const simulateContractExecuteFailure = () => {
 }
 
 // Mock hook for CosmWasm client
-export const mockUseCosmWasmClient = jest.fn()
-export const mockUseSigningCosmWasmClient = jest.fn()
+export const mockUseCosmWasmClient = vi.fn()
+export const mockUseSigningCosmWasmClient = vi.fn()
 
 // Setup mock implementations
 mockUseCosmWasmClient.mockReturnValue({

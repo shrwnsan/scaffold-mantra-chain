@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { ReactElement } from 'react'
-import { renderWithChakra } from './chakra-testing.js'
+import { vi } from 'vitest'
+import { renderWithChakra } from './chakra-testing.jsx'
 import { TEST_TIMEOUTS, TEST_TEXTS, WALLET_MOCKS } from './test-constants.js'
 
 // Helper to render app with specific wallet state
@@ -259,8 +259,8 @@ export const testKeyboardNavigation = async (elements) => {
 export const testClipboardCopy = async (copyButton, textToCopy) => {
   // Mock navigator.clipboard
   const mockClipboard = {
-    writeText: jest.fn().mockResolvedValue(undefined),
-    readText: jest.fn().mockResolvedValue(textToCopy),
+    writeText: vi.fn().mockResolvedValue(undefined),
+    readText: vi.fn().mockResolvedValue(textToCopy),
   }
   Object.assign(navigator, { clipboard: mockClipboard })
 

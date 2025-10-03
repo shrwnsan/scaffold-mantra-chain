@@ -15,7 +15,7 @@ describe('Test Infrastructure Validation', () => {
   })
 
   it('should import testing utilities correctly', async () => {
-    const { renderWithChakra, findChakraButton } = await import('./utils/chakra-testing.js')
+    const { renderWithChakra, findChakraButton } = await import('./utils/chakra-testing.jsx')
     expect(renderWithChakra).toBeDefined()
     expect(findChakraButton).toBeDefined()
   })

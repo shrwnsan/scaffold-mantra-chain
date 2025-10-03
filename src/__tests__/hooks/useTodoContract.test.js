@@ -1,5 +1,6 @@
 // Tests for useTodoContract hook template
 
+import { describe, test, expect, beforeEach, afterAll, vi } from 'vitest'
 import { renderHook, act, waitFor } from '@testing-library/react'
 import useTodoContract from '../../hooks/useTodoContract'
 import {
@@ -9,12 +10,12 @@ import {
 } from '../utils/hook-testing-utils'
 
 // Mock console methods to reduce noise in tests
-const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {})
-const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
 describe('useTodoContract Hook Template', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     consoleSpy.mockClear()
     consoleErrorSpy.mockClear()
   })

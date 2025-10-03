@@ -1,13 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
-import { ReactElement, ReactNode } from 'react'
+import React from 'react'
 
 // Custom render function with Chakra UI provider
-export const renderWithChakra = (
-  ui: ReactElement,
-  { ...renderOptions } = {}
-) => {
-  const Wrapper = ({ children }: { children?: ReactNode }) => (
+export const renderWithChakra = (ui, { ...renderOptions } = {}) => {
+  const Wrapper = ({ children }) => (
     <ChakraProvider value={defaultSystem}>
       {children}
     </ChakraProvider>
@@ -17,41 +14,41 @@ export const renderWithChakra = (
 }
 
 // Helper to find Chakra UI components by their common attributes
-export const findChakraButton = (text: string | RegExp) => {
+export const findChakraButton = (text) => {
   return screen.getByRole('button', { name: text })
 }
 
-export const findChakraHeading = (text: string | RegExp, level?: number) => {
+export const findChakraHeading = (text, level) => {
   return screen.getByRole('heading', { name: text, level })
 }
 
-export const findChakraText = (text: string | RegExp) => {
+export const findChakraText = (text) => {
   return screen.getByText(text)
 }
 
-export const queryChakraButton = (text: string | RegExp) => {
+export const queryChakraButton = (text) => {
   return screen.queryByRole('button', { name: text })
 }
 
-export const queryChakraText = (text: string | RegExp) => {
+export const queryChakraText = (text) => {
   return screen.queryByText(text)
 }
 
 // Badge finding helpers
-export const findBadge = (text: string | RegExp) => {
+export const findBadge = (text) => {
   return screen.getByText(text, { selector: '[data-badge]' })
 }
 
-export const queryBadge = (text: string | RegExp) => {
+export const queryBadge = (text) => {
   return screen.queryByText(text, { selector: '[data-badge]' })
 }
 
 // Input and form helpers
-export const findChakraInput = (label: string | RegExp) => {
+export const findChakraInput = (label) => {
   return screen.getByRole('textbox', { name: label })
 }
 
-export const findChakraCheckbox = (label: string | RegExp) => {
+export const findChakraCheckbox = (label) => {
   return screen.getByRole('checkbox', { name: label })
 }
 
@@ -60,7 +57,7 @@ export const findChakraContainer = () => {
   return screen.getByRole('main')
 }
 
-export const findChakraBox = (testId?: string) => {
+export const findChakraBox = (testId) => {
   if (testId) {
     return screen.getByTestId(testId)
   }
@@ -69,28 +66,28 @@ export const findChakraBox = (testId?: string) => {
 }
 
 // Common test scenarios for Chakra UI components
-export const expectComponentToBeVisible = (element: HTMLElement) => {
+export const expectComponentToBeVisible = (element) => {
   expect(element).toBeInTheDocument()
   expect(element).toBeVisible()
 }
 
-export const expectComponentToHaveText = (element: HTMLElement, text: string) => {
+export const expectComponentToHaveText = (element, text) => {
   expect(element).toBeInTheDocument()
   expect(element).toHaveTextContent(text)
 }
 
-export const expectButtonToBeEnabled = (button: HTMLElement) => {
+export const expectButtonToBeEnabled = (button) => {
   expect(button).toBeInTheDocument()
   expect(button).not.toBeDisabled()
 }
 
-export const expectButtonToBeDisabled = (button: HTMLElement) => {
+export const expectButtonToBeDisabled = (button) => {
   expect(button).toBeInTheDocument()
   expect(button).toBeDisabled()
 }
 
 // Color scheme testing (using data attributes or classes)
-export const expectButtonToHaveColorScheme = (button: HTMLElement, scheme: string) => {
+export const expectButtonToHaveColorScheme = (button, scheme) => {
   // Chakra UI typically adds data attributes or classes for color schemes
   expect(button).toBeInTheDocument()
   // This may need adjustment based on actual Chakra UI implementation
@@ -105,7 +102,7 @@ export const expectButtonToHaveColorScheme = (button: HTMLElement, scheme: strin
 }
 
 // Responsive design testing utilities
-export const expectResponsiveText = (element: HTMLElement, desktopText: string, mobileText?: string) => {
+export const expectResponsiveText = (element, desktopText, mobileText) => {
   expect(element).toBeInTheDocument()
   expect(element).toHaveTextContent(desktopText)
 
@@ -116,12 +113,12 @@ export const expectResponsiveText = (element: HTMLElement, desktopText: string, 
 }
 
 // Accessibility helpers
-export const expectAriaLabel = (element: HTMLElement, label: string) => {
+export const expectAriaLabel = (element, label) => {
   expect(element).toBeInTheDocument()
   expect(element).toHaveAttribute('aria-label', label)
 }
 
-export const expectAriaDescribedBy = (element: HTMLElement, descriptionId: string) => {
+export const expectAriaDescribedBy = (element, descriptionId) => {
   expect(element).toBeInTheDocument()
   expect(element).toHaveAttribute('aria-describedby', descriptionId)
 }
