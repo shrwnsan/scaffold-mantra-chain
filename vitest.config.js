@@ -67,6 +67,8 @@ export default defineConfig({
     environmentOptions: {
       jsdom: {
         resources: 'usable',
+        pretendToBeVisual: true,
+        url: 'http://localhost:3000',
       },
     },
 
