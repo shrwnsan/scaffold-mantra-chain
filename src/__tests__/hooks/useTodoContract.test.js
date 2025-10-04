@@ -42,8 +42,11 @@ describe('useTodoContract Hook', () => {
     expect(result).toHaveProperty('deleteTodo')
   })
 
-  it('should export default function', () => {
+  it('should export default function', async () => {
     // Verify the hook file exists and can be imported
-    expect(() => require('../../hooks/useTodoContract.js')).not.toThrow()
+    expect(async () => {
+      const hook = await import('../../hooks/useTodoContract.js')
+      expect(hook.default).toBeDefined()
+    }).not.toThrow()
   })
 })
