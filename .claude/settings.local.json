@@ -32,7 +32,9 @@
       "Bash(npx jest:*)",
       "Bash(tree:*)",
       "Bash(npm run test:hooks:*)",
-      "Bash(npm run test:ci:*)"
+      "Bash(npm run test:ci:*)",
+      "Bash(npx vitest run:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
